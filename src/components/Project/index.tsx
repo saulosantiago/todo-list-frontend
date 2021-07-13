@@ -11,7 +11,6 @@ import { useEffect, useRef } from 'react';
 const Project: React.FC = ({projectData, selfDelete}) => {
   const [tasks, setTasks] = useState([])
   const [newTask, setNewTask] = useState('')
-  const [modalTitle, setModalTitle] = useState('')
   const [modalNewName, setModalNewName] = useState('')
   const [modalTaskId, setModalTaskId] = useState('')
   const [show, setShow] = useState(false);
