@@ -13,27 +13,20 @@ const Home: React.FC = () => {
   const [projects, setProjects] = useState([])
   const [newProjectName, setNewProjectName] = useState('')
   const newProjectNameRef = useRef()
+  const history = useHistory()
 
   useEffect(() => {
     loadProjects()
   }, [])
 
   async function loadProjects() {
-    const result = await listProjects()
-    setProjects(result.data)
-  }
-
-  const handleCreateProject = async () => {
-    if(!newProjectName){
-      return
+    try{
+      const result = await listProjects()
+      setProjects(result.data)
+    } catch(e) {
+      console.log(e)
+      history.push('/login')
     }
-    const payload = {
-      name: newProjectName
-    }
-    await createProject(payload)
-    await loadProjects()
-    newProjectNameRef.current.value = ''
-    setNewProjectName('')
   }
 
   return <div>
